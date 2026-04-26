@@ -3,23 +3,17 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
-import AuthForm from '@/components/auth/AuthForm'
 
 export default function HomePage() {
   const router = useRouter()
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) router.push('/chat')
+      if (session) router.replace('/chat')
+      else router.replace('/login')
     })
   }, [router])
 
-  return (
-    <main
-      className="min-h-screen flex items-center justify-center p-4"
-      style={{ background: 'var(--bg-base)' }}
-    >
-      <AuthForm />
-    </main>
-  )
+  // Blank while redirecting
+  return null
 }

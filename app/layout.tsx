@@ -1,5 +1,12 @@
 import type { Metadata } from 'next'
+import { DM_Sans } from 'next/font/google'
 import './globals.css'
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-sans',
+})
 
 export const metadata: Metadata = {
   title: 'Chat — Supabase Realtime',
@@ -9,7 +16,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="min-h-screen" style={{ background: 'var(--bg-base)' }}>
+      <body className={`bg-base text-content-primary min-h-screen antialiased ${dmSans.variable}`} suppressHydrationWarning>
         {children}
       </body>
     </html>
